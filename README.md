@@ -86,11 +86,11 @@ Ce projet a pour objectif de fournir un outil d'analyse de données pour le serv
 
 Le terminal dans lequel la commande `flask` a été excécutée doit afficher le lien à ouvrir dans un navigateur. Exemple : `* Running on http://127.0.0.1:5000`.  
 
-![Mise en production - Ecran 1](./static/img/mep0.png)  
+![Mise en production - Ecran 1](./static/img/mep0.png =307x664)  
 Au premier lancement le système vérifie le statut du projet et propose sa mise en production.  
 
-![Mise en production - Ecran 2](./static/img/mep1.png)  
+![Mise en production - Ecran 2](./static/img/mep1.png =307x664)  
 La première étape consiste à vérifier la connectivité au serveur PostgreSQL et l'existence d'un utilisateur d'application avec les droits suffisants.  
 
-![Mise en production - Ecran 1](./static/img/mep2.png)  
+![Mise en production - Ecran 1](./static/img/mep2.png =307x664)  
 Lorsque les paramètres saisis sont correct, l'écran suivant propose le paramétrage des noms de base de données et schémas, ainsi que le nombre de clients et de collectes à générer. Attention, la mise en production avec le paramétrage de base (3 000 000 de clients / 40 000 000 de collectes) prend un temps certain. Sur une machine équipée de 64 Go de RAM et un processeur Core i9-9900 K 16 coeurs, 3 h 22 min ont été nécessaires.
