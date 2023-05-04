@@ -14,7 +14,7 @@ Le dossier `database` du projet contient les éléments permettant de créer et 
 | --- | --- |
 | **Client** | Un client est identifié par son nom, prénom, téléphone, email, code postal, ville, nombre d'enfants, catégorie socio-professionnelle. Est considérée comme client toute personne possédant une carte de fidélité Goldenline. Un client peut faire l'objet d'aucune collecte, s'il dispose d'une carte de fidélité sans avoir fait d'achat. |
 | **Collecte** | Ensemble des éléments qui caractérisent un passage en caisse d'un client : identification du client, date et heure de passage, catégories des produits achetés, montant dépensé dans chaque catégorie. |
-| **Categorie** | Liste des catégories de rayons chez Goldenline : DPH (Droguerie Pafumerie Hygiène), Alimentaire, Textile et Multimédia. |
+| **Categorie** | Liste des catégories de rayons chez Goldenline : DPH (Droguerie Parfumerie Hygiène), Alimentaire, Textile et Multimédia. |
 | **Achat** | Un achat regroupe la catégorie et le montant dépensé dans cette catégorie lors d'un passage en caisse. Une collecte comprend au minimum 1 achat et 4 au plus. |
 | **CSP** | Catégorie socio-professionnelle :<br>- Agriculteurs exploitants (AE)<br>- Artisants, commercants, chefs d'entreprise (ACCE)<br>- Cadres et professions intellectuelles supérieures (CPIS)<br>- Professions intermédiaires (PI)<br>- Employés (E)<br>- Retraités (R)<br>- Sans activité professionnelle |  
 
