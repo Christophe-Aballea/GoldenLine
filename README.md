@@ -9,7 +9,9 @@ Le Goldenline Marketing Dashboard est un projet Python qui fournit un site web p
   - [Introduction](#introduction)
   - [Fonctionnalités](#fonctionnalités)
   - [Technologies utilisées](#technologies-utilisées)
-  - [Installation et configuration](#installation-et-configuration)
+  - [Installation et prérequis](#installation-et-prérequis)
+    - [Prérequis](#prérequis)
+    - [Installation](#installation)
   - [Utilisation](#utilisation)
 
 ## Introduction
@@ -28,8 +30,43 @@ Ce projet a pour objectif de fournir un outil d'analyse de données pour le serv
 - Python
 - Flask (Framework Web)
 - Pandas (Bibliothèque de manipulation et d'analyse de données)
+- PostgreSQL (SGBD/R)
 
-## Installation et configuration
+## Installation et prérequis
+
+### Prérequis
+
+- Avoir un serveur PostgreSQL installé et démarré
+  
+  Installation Linux Ubuntu (https://www.postgresql.org/download/linux/ubuntu/)
+  ``` bash
+  $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+  $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  $ sudo apt-get update
+  ```
+  
+  Démarrage
+  ``` bash
+  $ sudo service postgresql start
+   * Starting PostgreSQL 15 database server
+  ```
+- Avoir créé un utilisateur d'application
+  
+  Création d'un utilisateur
+  ``` bash
+  $ sudo -u postgres psql
+  psql (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
+  Type "help" for help.
+  ```
+  ``` sql
+  postgres=# CREATE USER nom_utilisteur_d_application PASSWORD 'mot_de_passe_fort' CREATEDB;
+  CREATE ROLE
+  postgres=# \q
+  ```
+
+- Disposer de l'adresse IP du serveur (127.0.0.1 par défaut), du port d'écoute (5432 par défaut) et des identifiants de connexion de l'utilisateur d'application
+
+### Installation
 
 - Cloner le dépôt
   ``` bash
