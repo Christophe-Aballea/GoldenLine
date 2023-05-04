@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/db_params_page.css') }}" rel="stylesheet">
+  <title>Connexion Serveur PostgreSQL</title>
+</head>
+<body>
+  <div class="container text-center">
+    <img src="{{ url_for('static', filename='img/logo_bo.png')}}" alt="Logo back-end" class="logo mb-4">
+    <h1>Mise en production</span></h1>
+    <p class="lead">Connexion au serveur PostgreSQL</p>
+    {% with messages = get_flashed_messages(category_filter=["error"]) %}
+    {% if messages %}
+        <div class="alert alert-danger">          
+            {% for message in messages %}
+                {% if loop.first %}
+                <p class="first">{{ message }}</p>
+                {% elif loop.index == 2 %}
+                <p class="second">{{ message }}</p><ul>
+                {% elif loop.last %}
+                <li class="last"><a href="{{ url_for('help_db_connection') }}" target="_blank">Résoudre les problèmes de connexion</a></li>
+                {% else %}
+                <li class="other">{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="actions">
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="host">Host</label>
+                <input type="text" name="host" id="host" class="form-control" value="{{ host }}" autofocus required>
+            </div>
+            <div class="form-group">
+                <label for="port">Port</label>
+                <input type="text" name="port" id="port" class="form-control" value="{{ port }}" required>
+            </div>
+            <div class="form-group">
+                <label for="user">Username</label>
+                <input type="text" name="user" id="user" class="form-control" value="{{ user }}" required>
+            </div>
+            <div class="form-group">
+                <label for="mdp">Password</label>
+                <input type="password" name="mdp" id="mdp" class="form-control" value="{{ mdp }}" required>
+            </div>
+            <div class="form-group action-buttons">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">Annuler</a>
+                <input class="btn btn-primary" type="submit" value="Suivant >">
+            </div>
+        </form>
+    
+    </div>
+ </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

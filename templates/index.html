@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/index_page.css') }}" rel="stylesheet">
+  <title>Accueil</title>
+</head>
+<body>
+  <div class="container text-center">
+    <img src="{{ url_for('static', filename='img/logo_bo.png')}}" alt="Logo back-end" class="logo mb-4">
+    <h1>Mise en production</span></h1>
+    <p class="lead">Le projet GoldenLine n'est pas encore en production.</p>
+    <div class="actions">
+      <p>Avant de lancer la mise en production, assurez-vous de disposer des éléments suivants :</p>
+      <ul>
+        <li>Adresse IP du serveur PostreSQL et port de connexion</li>
+        <li>Identifiants d'un compte utilisateur PostreSQL avec droits de création d'une base de données</li>
+      </ul>
+    </div>
+    
+    <a href="{{ url_for('db_params') }}" class="btn btn-primary">Suivant ></a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

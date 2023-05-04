@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Help DB connection</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Rsoudre_les_problmes_de_connexion_au_serveur_PostgreSQL_0"></a>Résoudre les problèmes de connexion au serveur PostgreSQL</h1>
+    <blockquote>
+    <p class="has-line-data" data-line-start="2" data-line-end="3"><em>Note : Les manipulations suivantes ne peuvent être réalisées qu’avec un compte possédant les droits suffisants sur le serveur PostgreSQL.</em></p>
+    </blockquote>
+    <h2 class="code-line" data-line-start=4 data-line-end=5 ><a id="1_Vrifier_que_le_serveur_PostgreSQL_est_bien_dmarr_4"></a>1. Vérifier que le serveur PostgreSQL est bien démarré</h2>
+    <p class="has-line-data" data-line-start="6" data-line-end="7">Dans un terminal :</p>
+    <pre><code class="has-line-data" data-line-start="9" data-line-end="11" class="language-bash">$ sudo service postgresql status
+    </code></pre>
+    <p class="has-line-data" data-line-start="12" data-line-end="13">Si le service est ‘down’ :</p>
+    <pre><code class="has-line-data" data-line-start="15" data-line-end="17" class="language-bash">$ sudo service postgresql start
+    </code></pre>
+    <p class="has-line-data" data-line-start="18" data-line-end="19">Noter que la sortie des deux commandes précédentes affiche le port de connexion.</p>
+    <h2 class="code-line" data-line-start=20 data-line-end=21 ><a id="2_Vrifier_host_et_port_20"></a>2. Vérifier ‘host’ et ‘port’</h2>
+    <p class="has-line-data" data-line-start="22" data-line-end="24">Ce projet a été testé avec PostgreSQL installé sur le même serveur, les valeurs ‘localhost’ ou ‘127.0.0.1’ devraient fonctionner pour le host.<br>
+    Le port peut être obtenu par la vérification précédente.</p>
+    <p class="has-line-data" data-line-start="25" data-line-end="26">Si cependant PostgreSQL n’est pas installé sur le même serveur, il conviendra de vérifier dans le fichier de configuration de PostgreSQL les adresse et port d’écoute disponibles.</p>
+    <p class="has-line-data" data-line-start="27" data-line-end="28">Déterminer l’emplacement du fichier de configuration :</p>
+    <pre><code class="has-line-data" data-line-start="30" data-line-end="36" class="language-bash">$ sudo -u postgres psql -c <span class="hljs-string">'SHOW config_file'</span>
+                  config_file
+    -----------------------------------------
+    /etc/postgresql/<span class="hljs-number">15</span>/main/postgresql.conf
+    (<span class="hljs-number">1</span> row)
+    </code></pre>
+    <p class="has-line-data" data-line-start="37" data-line-end="38">Rechercher l’adresse d’écoute (remplacer le path du fichier de configuration par le votre) :</p>
+    <pre><code class="has-line-data" data-line-start="40" data-line-end="43" class="language-bash">$ grep <span class="hljs-string">'listen_addresses = '</span> /etc/postgresql/<span class="hljs-number">15</span>/main/postgresql.conf
+    <span class="hljs-comment">#listen_addresses = 'localhost'         # what IP address(es) to listen on;</span>
+    </code></pre>
+    <p class="has-line-data" data-line-start="44" data-line-end="45">Si la ligne trouvée est en commentaire comme ici, le port d’écoute par défaut est 127.0.0.1</p>
+    <p class="has-line-data" data-line-start="46" data-line-end="47">Rechercher le port d’écoute :</p>
+    <pre><code class="has-line-data" data-line-start="48" data-line-end="51" class="language-bash">$ grep <span class="hljs-string">'port = '</span> /etc/postgresql/<span class="hljs-number">15</span>/main/postgresql.conf
+    port = <span class="hljs-number">5433</span>                             <span class="hljs-comment"># (change requires restart)</span>
+    </code></pre>
+    <h2 class="code-line" data-line-start=52 data-line-end=53 ><a id="3_Vrifier_lexistence_du_compte_admin_de_lapplication_52"></a>3. Vérifier l’existence du compte admin de l’application</h2>
+    <p class="has-line-data" data-line-start="54" data-line-end="55">Par mesure de sécurité, il est imposé dans ce projet un compte différent de ‘postgres’.</p>
+    <h3 class="code-line" data-line-start=56 data-line-end=57 ><a id="31_Tentative_de_connexion_56"></a>3.1 Tentative de connexion</h3>
+    <p class="has-line-data" data-line-start="58" data-line-end="59">Tenter de se connecter avec le compte (remplacer ‘username’, ‘host’ et ‘port’) :</p>
+    <pre><code class="has-line-data" data-line-start="61" data-line-end="69" class="language-bash">$ psql -U username -h host -p port <span class="hljs-operator">-d</span> postgres
+    Password <span class="hljs-keyword">for</span> user username:
+    psql (<span class="hljs-number">15.2</span> (Ubuntu <span class="hljs-number">15.2</span>-<span class="hljs-number">1</span>.pgdg22.<span class="hljs-number">04</span>+<span class="hljs-number">1</span>))
+    SSL connection (protocol: TLSv1.<span class="hljs-number">3</span>, cipher: TLS_AES_256_GCM_SHA384, compression: off)
+    Type <span class="hljs-string">"help"</span> <span class="hljs-keyword">for</span> help.
+
+    postgres=&gt; \q
+    </code></pre>
+    <p class="has-line-data" data-line-start="70" data-line-end="71">Si le compte n’existe pas ou si le mot de passe du compte est erroné, c’est le même message d’erreur qui s’affiche :</p>
+    <pre><code class="has-line-data" data-line-start="72" data-line-end="76" class="language-bash">$ psql -U username -h host -p port <span class="hljs-operator">-d</span> postgres
+    Password <span class="hljs-keyword">for</span> user username:
+    psql: error: connection to server at <span class="hljs-string">"127.0.0.1"</span>, port <span class="hljs-number">5432</span> failed: FATAL:  password authentication failed <span class="hljs-keyword">for</span> user <span class="hljs-string">"username"</span>
+    </code></pre>
+    <h3 class="code-line" data-line-start=77 data-line-end=78 ><a id="32_Vrification_de_lexistence_du_compte_77"></a>3.2 Vérification de l’existence du compte</h3>
+    <p class="has-line-data" data-line-start="79" data-line-end="80">Connexion psql :</p>
+    <pre><code class="has-line-data" data-line-start="81" data-line-end="87" class="language-bash"> $ sudo -u postgres psql
+    psql (<span class="hljs-number">15.2</span> (Ubuntu <span class="hljs-number">15.2</span>-<span class="hljs-number">1</span>.pgdg22.<span class="hljs-number">04</span>+<span class="hljs-number">1</span>))
+    Type <span class="hljs-string">"help"</span> <span class="hljs-keyword">for</span> help.
+
+    postgres=<span class="hljs-comment"># </span>
+    </code></pre>
+    <p class="has-line-data" data-line-start="88" data-line-end="89">Recherche du compte et du privilège ‘CREATEDB’ :</p>
+    <pre><code class="has-line-data" data-line-start="90" data-line-end="98" class="language-psql">postgres=# SELECT rolname, rolcreatedb FROM pg_roles WHERE rolname='username';
+    rolname  | rolcreatedb
+    ----------+-------------
+    username | t
+    (1 row)
+
+    postgres=# \q
+    </code></pre>
+    <p class="has-line-data" data-line-start="99" data-line-end="100">Ici, le compte existe bien et le rôle ‘CREATEDB’ lui a bien été attribué.</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Flask
+Flask-Markdown
+psycopg2
+Faker
+pandas
+numpy
