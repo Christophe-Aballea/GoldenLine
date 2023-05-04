@@ -11,8 +11,6 @@ Le Goldenline Marketing Dashboard est un projet Python qui fournit un site web p
   - [Technologies utilisées](#technologies-utilisées)
   - [Installation et configuration](#installation-et-configuration)
   - [Utilisation](#utilisation)
-  - [Contribution](#contribution)
-  - [Licence](#licence)
 
 ## Introduction
 
@@ -30,26 +28,23 @@ Ce projet a pour objectif de fournir un outil d'analyse de données pour le serv
 - Python
 - Flask (Framework Web)
 - Pandas (Bibliothèque de manipulation et d'analyse de données)
-- Plotly (Bibliothèque de visualisation de données)
 
 ## Installation et configuration
 
-Cette section décrira comment installer et configurer le projet sur un environnement local. Incluez les étapes pour :
-
 - Cloner le dépôt
+  ```bash
+  $ git clone https://github.com/Christophe-Aballea/goldenline
+  ```
 - Installer les dépendances du projet
-- Configurer les variables d'environnement
+  ```bash
+  $ cd goldenline
+  $ pip install -r requirements.txt
+  ```
 - Exécuter le projet en local
+  ```bash
+  $ flask --app goldenline-be:back run
+  ```
 
 ## Utilisation
 
 Cette section expliquera comment utiliser l'application une fois qu'elle est installée et configurée. Incluez des captures d'écran et des exemples pour illustrer les différentes fonctionnalités et les étapes à suivre pour les utiliser.
-
-## Contribution
-
-Expliquez ici comment les autres développeurs peuvent contribuer au projet. Indiquez les règles et les exigences à suivre pour soumettre des modifications, ainsi que le processus de révision et d'intégration de ces modifications.
-
-## Licence
-
-Incluez ici les informations sur la licence du projet, le cas échéant. Vous pouvez choisir une licence open-source (par exemple, MIT, GPL, Apache, etc.) ou préciser que le projet est sous copyright et réservé à l'usage exclusif de l'entreprise Goldenline.
-
