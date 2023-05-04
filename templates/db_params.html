@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="{{ url_for('static', filename='css/db_params_page.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-_b72Xx5js5bxrAaR6U5z6U5j6X8zAtBjYgPp0fvIL-0hyu8Jw8M+08b/v7K1D0T9" crossorigin="anonymous">
   <title>Connexion Serveur PostgreSQL</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
                 {% elif loop.index == 2 %}
                 <p class="second">{{ message }}</p><ul>
                 {% elif loop.last %}
-                <li class="last"><a href="{{ url_for('help_db_connection') }}" target="_blank">Résoudre les problèmes de connexion</a></li>
+                <li class="last"><a href="https://github.com/Christophe-Aballea/goldenline/blob/main/templates/help/db_connection.md" target="_blank">Résoudre les problèmes de connexion <i class="fas fa-external-link-alt"></i></a></li>
                 {% else %}
                 <li class="other">{{ message }}</li>
                 {% endif %}

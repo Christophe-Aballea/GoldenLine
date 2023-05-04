@@ -1,18 +1,18 @@
 # Résoudre les problèmes de connexion au serveur PostgreSQL
 
-### -> Les manipulations suivantes ne peuvent être réalisées qu'avec un compte possédant les droits suffisants sur le serveur PostgreSQL.
+### > Les manipulations suivantes ne peuvent être réalisées qu'avec un compte possédant les droits suffisants sur le serveur PostgreSQL.
 
 ## 1. Vérifier que le serveur PostgreSQL est bien démarré
 
 Dans un terminal :
 
-```bash
+``` bash
 $ sudo service postgresql status
 ```
 
 Si le service est 'down' :
 
-```bash
+``` bash
 $ sudo service postgresql start
 ```
 
@@ -27,7 +27,7 @@ Si cependant PostgreSQL n'est pas installé sur le même serveur, il conviendra 
 
 Déterminer l'emplacement du fichier de configuration :
 
-```bash
+``` bash
 $ sudo -u postgres psql -c 'SHOW config_file'
                config_file
 -----------------------------------------
@@ -37,7 +37,7 @@ $ sudo -u postgres psql -c 'SHOW config_file'
 
 Rechercher l'adresse d'écoute (remplacer le path du fichier de configuration par le votre) :
 
-```bash
+``` bash
 $ grep 'listen_addresses = ' /etc/postgresql/15/main/postgresql.conf
 #listen_addresses = 'localhost'         # what IP address(es) to listen on;
 ```
@@ -45,12 +45,12 @@ $ grep 'listen_addresses = ' /etc/postgresql/15/main/postgresql.conf
 Si la ligne trouvée est en commentaire comme ici, le port d'écoute par défaut est 127.0.0.1
 
 Rechercher le port d'écoute :
-```bash
+``` bash
 $ grep 'port = ' /etc/postgresql/15/main/postgresql.conf
 port = 5433                             # (change requires restart)
 ```
 
-## 3. Vérifier l'existence du compte admin de l'application
+## 3. Vérifier le compte utilisateur de l'application
 
 Par mesure de sécurité, il est imposé dans ce projet un compte différent de 'postgres'.
 
@@ -58,7 +58,7 @@ Par mesure de sécurité, il est imposé dans ce projet un compte différent de 
 
 Tenter de se connecter avec le compte (remplacer 'username', 'host' et 'port') :
 
-```bash
+``` bash
 $ psql -U username -h host -p port -d postgres
 Password for user username:
 psql (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
@@ -69,16 +69,16 @@ postgres=> \q
 ```
 
 Si le compte n'existe pas ou si le mot de passe du compte est erroné, c'est le même message d'erreur qui s'affiche :
-```bash
+``` bash
 $ psql -U username -h host -p port -d postgres
 Password for user username:
 psql: error: connection to server at "127.0.0.1", port 5432 failed: FATAL:  password authentication failed for user "username"
 ```
 
-### 3.2 Vérification de l'existence du compte
+### 3.2 Vérification de l'existence du compte et de ses droits
 
 Connexion psql :
-```bash
+``` bash
  $ sudo -u postgres psql
 psql (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
 Type "help" for help.
@@ -87,7 +87,7 @@ postgres=#
 ```
 
 Recherche du compte et du privilège 'CREATEDB' :
-```psql
+``` sql
 postgres=# SELECT rolname, rolcreatedb FROM pg_roles WHERE rolname='username';
  rolname  | rolcreatedb
 ----------+-------------
