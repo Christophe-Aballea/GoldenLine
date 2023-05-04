@@ -6,18 +6,6 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="{{ url_for('static', filename='css/db_params_page.css') }}" rel="stylesheet">
   <title>Créations bases de données</title>
-  <script>
-    function validateInput(input) {
-      // Supprime tous les caractères non numériques sauf les espaces
-      input.value = input.value.replace(/[^\d\s]/g, '');
-
-      // Supprime les espaces existants
-      let num = input.value.replace(/\s/g, '');
-
-      // Ajoute des espaces entre les groupes de 3 chiffres
-      input.value = num.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    }
-  </script>
 </head>
 <body>
   <div class="container text-center">
@@ -53,6 +41,7 @@
       </form>
  </div>
 
+  <script src="{{ url_for('static', filename='js/db_creation.js') }}"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
