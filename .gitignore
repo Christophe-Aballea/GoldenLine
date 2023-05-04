@@ -3,3 +3,4 @@ __pycache__/
 .vscode/
 database/__pycache__
 gold/
+params.json
