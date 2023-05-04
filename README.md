@@ -38,21 +38,21 @@ Ce projet a pour objectif de fournir un outil d'analyse de données pour le serv
 
 - Avoir un serveur PostgreSQL installé et démarré
   
-  Exemple d'installation sur Linux Ubuntu (source : https://www.postgresql.org/download/linux/ubuntu/)
+  Exemple d'installation sur Linux Ubuntu (source : https://www.postgresql.org/download/linux/ubuntu/) :
   ``` bash
   $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
   $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
   $ sudo apt-get update
   ```
   
-  Démarrage
+  Démarrage :
   ``` bash
   $ sudo service postgresql start
    * Starting PostgreSQL 15 database server
   ```
 - Avoir créé un utilisateur d'application
   
-  Création d'un utilisateur
+  Création d'un utilisateur :
   ``` bash
   $ sudo -u postgres psql
   psql (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
@@ -68,11 +68,11 @@ Ce projet a pour objectif de fournir un outil d'analyse de données pour le serv
 
 ### Installation
 
-- Cloner le dépôt
+- Cloner le dépôt :
   ``` bash
   $ git clone https://github.com/Christophe-Aballea/goldenline
   ```
-- Installer les dépendances du projet
+- Installer les dépendances du projet :
   ``` bash
   $ cd goldenline
   $ pip install -r requirements.txt
