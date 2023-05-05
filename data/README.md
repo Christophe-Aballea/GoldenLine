@@ -2,17 +2,15 @@
 
 ## Description
 
-Le back-end du projet Goldenline Marketing Dashboard se compose :
-- D'une base de données PostreSQL
-- De deux schémas : 'source' et 'marketing'
+Le back-end du projet Goldenline Marketing Dashboard se compose d'une base de données PostreSQL, elle-même composée de deux schémas : 'source' et 'marketing'.
 
-Le dossier `database` du projet contient les éléments permettant de créer et alimenter ces schémas.
+Le dossier `data` du projet contient les éléments permettant de créer et alimenter ces schémas.
 
 ## Glossaire
 
 | Libellé | Description |
 | --- | --- |
-| **Client** | Un client est identifié par son nom, prénom, téléphone, email, code postal, ville, nombre d'enfants, catégorie socio-professionnelle. Est considérée comme client toute personne possédant une carte de fidélité Goldenline. Un client peut faire l'objet d'aucune collecte, s'il dispose d'une carte de fidélité sans avoir fait d'achat. |
+| **Client** | Un client est identifié par son nom, prénom, téléphone, email, code postal, ville, nombre d'enfants, catégorie socio-professionnelle. Est considérée comme client toute personne possédant une carte de fidélité Goldenline. Un client peut ne faire l'objet d'aucune collecte, s'il dispose d'une carte de fidélité sans avoir fait d'achat. |
 | **Collecte** | Ensemble des éléments qui caractérisent un passage en caisse d'un client : identification du client, date et heure de passage, catégories des produits achetés, montant dépensé dans chaque catégorie. |
 | **Categorie** | Liste des catégories de rayons chez Goldenline : DPH (Droguerie Parfumerie Hygiène), Alimentaire, Textile et Multimédia. |
 | **Achat** | Un achat regroupe la catégorie et le montant dépensé dans cette catégorie lors d'un passage en caisse. Une collecte comprend au minimum 1 achat et 4 au plus. |
@@ -36,19 +34,19 @@ Forunir les données nécessaires pour générer les graphiques du site web Gold
   - par catégorie socio-professionnelle
   - par nombre d'enfants des clients (0, 1, 2, 3, 4 et plus)
 
-Les principes du RGPD et les recommandations de la CNIL devront être respectés :
+Les principes du RGPD et les recommandations de la CNIL doivent être respectés :
 - Protection des données personnelles : anonymisation des données clients
-- Obligation de limiter la quantités de données dès la conception : seules les données strictement nécessaires seront stockées
+- Obligation de limiter la quantités de données dès la conception : seules les données strictement nécessaires peuvent être stockées
 
 ## Fonctionnement
 
-<img src="../static/img/creation_schemas.png">
+<p align="center"><img src="../static/img/creation_schemas.png"></p>
 
 ## Schéma 'source'
 
 DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données clientèle récupérées via les cartes de fidélité que les clients présentent à chaque passage en caisse, sont générées de manière aléatoire dans le schéma 'source'.
 
-<img src="../static/img/mcd_source.png">
+<p align="center"><img src="../static/img/mcd_source.png"></p>
 
 ## Schéma 'marketing'
 
@@ -70,4 +68,4 @@ DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données cli
 
 > _Pour des question de performance, ces opérations sont réalisées directement par le moteur de BD PostgreSQL, via une procédure stockée._
 
-<img src="../static/img/mcd_marketing.png">
+<p align="center"><img src="../static/img/mcd_marketing.png"></p>

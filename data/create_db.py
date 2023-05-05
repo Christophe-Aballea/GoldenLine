@@ -1,6 +1,6 @@
 import psycopg2
 import pathlib
-from database import populate_sc_source
+from data import populate_sc_source
 
 
 # Contenu de la table 'csp'
