@@ -42,6 +42,8 @@ Les principes du RGPD et les recommandations de la CNIL devront être respectés
 
 ## Fonctionnement
 
+<img src="../static/img/creation_schemas.png">
+
 ## Schéma 'source'
 
 DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données clientèle récupérées via les cartes de fidélité que les clients présentent à chaque passage en caisse, sont générées de manière aléatoire dans le schéma 'source'.
@@ -50,7 +52,22 @@ DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données cli
 
 ## Schéma 'marketing'
 
-Afin de répondre aux besoins de d'analyse et de visualisation, les données pertinentes du schéma 'source' sont transférées dans le schéma 'marketing'.
-Ce transfert s'accompagne de l'anonynimisation des informations clients.
+- Filtrage
+  - Les données clients su schéma 'source' non nécessaires ne sont pas tranférées : `nom`, `prénom`, `telephone`, `email`, `code_postal`, et `ville`
+  - Les périodes à analyser ne nécessitent pas de descendre jusqu'à un niveau de granularité horaire. L'attribut `date_heure_passage` (TIMESTAMP) de la table `collecte` du schéma 'source' est transformé en `date_pasage` (DATE) dans le schéma 'marketing'
+- Réorganisation
+  - Les données clients sont éclatées entre les tables `client` et `csp`
+  - Les données catégories socio-professionnelles sont réorganisées :
+    - l'attribut `csp` du schéma 'source' contenait le libellé complet, il est renommé `libelle` dans le schéma 'marketing'
+    - l'attribut `csp` du schéma 'marketing' contient les initiales de la catégorie socio-professionnelle
+  - Les données de collectes sont éclatées entre les tables `collecte` , `achat` et `categorie` :
+    - la table `collecte` contient l'`id_client` et la date de passage `date_passage`
+    - la table `achat` contient l'`id_collecte`, l'`id_categorie` et le montant de l'achat `montant`. Un achat correpond à l'ensemble des produits d'une catégorie achetés d'une collecte donnée, donc d'un passage en caisse.
+    - la table `catégorie` contient le nom de chaque catégorie de produits.
+- Anonymisation des données clients :
+  - L'`id_client` est transformé de manière à ne pas permettre de retrouver l'`id_client` d'origine par calcul ou par comparaison après tri, grâce à la fonction de hash SHA256, native sur PostgreSQL
+  - Les champs utilisés sont ceux ayant une valeur unique par client : `id_client`, `telephone`, `email` 
 
-<img src="../static/img/mcd_marketing.png">
+> _Pour des question de performance, ces opérations sont réalisées directement par le moteur de BD PostgreSQL, via une procédure stockée._
+
+<img src="../static/img/creation_schemas.png">
