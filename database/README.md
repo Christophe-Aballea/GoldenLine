@@ -20,10 +20,10 @@ Le dossier `database` du projet contient les éléments permettant de créer et 
 
 ## Schéma 'source'
 
-DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données clientèle récupérées via les cartes de fidélité que les clients présentent à chaque passage en caisse, sont générées de manière aléatoire dans schéma 'source'.
+DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données clientèle récupérées via les cartes de fidélité que les clients présentent à chaque passage en caisse, sont générées de manière aléatoire dans le schéma 'source'.
 
 ## Schéma 'marketing'
 
 Données récupérées du schéma 'source' avec anonynimisation des informations clients.
 
-<img src="../static/img/Csps.png">
+<img src="../static/img/mcd_marketing.png">
