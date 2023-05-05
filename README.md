@@ -21,8 +21,8 @@ Ce projet a pour objectif de fournir un outil d'analyse de données pour le serv
 ## Fonctionnalités
 
 - Visualisation des données clientèle
-- Filtrage des données par période, catégories de produits, catégories socio-professionnelles
-- Exportation des données
+- Filtrage des données par période, catégories de produits, catégories socio-professionnelles, nombre d'enfants
+- Export des données
 - Interface utilisateur intuitive et adaptative
 
 ## Technologies utilisées
