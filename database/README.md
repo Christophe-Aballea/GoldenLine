@@ -53,7 +53,7 @@ DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données cli
 ## Schéma 'marketing'
 
 - Filtrage
-  - Les données clients su schéma 'source' non nécessaires ne sont pas tranférées : `nom`, `prénom`, `telephone`, `email`, `code_postal`, et `ville`
+  - Les données clients du schéma 'source' non nécessaires ne sont pas tranférées : `nom`, `prénom`, `telephone`, `email`, `code_postal`, et `ville`
   - Les périodes à analyser ne nécessitent pas de descendre jusqu'à un niveau de granularité horaire. L'attribut `date_heure_passage` (TIMESTAMP) de la table `collecte` du schéma 'source' est transformé en `date_pasage` (DATE) dans le schéma 'marketing'
 - Réorganisation
   - Les données clients sont éclatées entre les tables `client` et `csp`
@@ -70,4 +70,4 @@ DataPro n'ayant pas accès au logiciel de caisse de Goldenline, les données cli
 
 > _Pour des question de performance, ces opérations sont réalisées directement par le moteur de BD PostgreSQL, via une procédure stockée._
 
-<img src="../static/img/creation_schemas.png">
+<img src="../static/img/mcd_marketing.png">
