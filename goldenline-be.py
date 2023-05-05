@@ -2,7 +2,7 @@ import pathlib
 import json
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flaskext.markdown import Markdown
-from database import check_db, create_db
+from data import check_db, create_db
 
 # Détermination du dossier racine du projet
 project_root = pathlib.Path(__file__).parent.resolve()
